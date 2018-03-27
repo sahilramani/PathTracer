@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="ray.h" />
     <ClInclude Include="RayTarget.h" />
     <ClInclude Include="Sphere.h" />
