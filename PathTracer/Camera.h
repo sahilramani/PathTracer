@@ -5,15 +5,26 @@
 class Camera
 {
 public:
-	Camera()
+	Camera(Vec3 position, Vec3 lookat, Vec3 up, float fov, float aspect)
+		: m_origin(position)
 	{
-		m_lower_left_corner = Vec3(-2.f, -1.f, -1.f);
-		m_horizontal = Vec3(4.f, 0.f, 0.f);
-		m_vertical = Vec3(0.f, 2.f, 0.f);
-		m_origin = Vec3(0.f, 0.f, 0.f);
+		Vec3 u, v, w;
+
+		w = unit_vector(position - lookat);
+		u = unit_vector(cross(up, w));
+		v = unit_vector(cross(w, u));
+
+		float theta = fov * float(M_PI) / 180.f;
+		float half_height = tanf(theta / 2.f);
+		float half_width = aspect * half_height;
+
+		m_lower_left_corner = position - half_width * u - half_height * v - w;
+
+		m_horizontal = 2.f * half_width * u;
+		m_vertical = 2.f * half_height * v;
 	}
 
-	Ray get_ray(float u, float v) { return Ray(m_origin, m_lower_left_corner + u*m_horizontal + v*m_vertical - m_origin); }
+	Ray get_ray(float u, float v) { return Ray(m_origin, m_lower_left_corner + u * m_horizontal + v * m_vertical - m_origin); }
 
 private:
 	Vec3 m_lower_left_corner;
