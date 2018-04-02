@@ -49,7 +49,7 @@ public:
 	inline float squared_length() const
 	{
 		assert(!(m_val[0] == 0 && m_val[1] == 0 && m_val[2] == 0));
-		return (sqrt(m_val[0] * m_val[0] + m_val[1] * m_val[1] + m_val[2] * m_val[2]));
+		return (m_val[0] * m_val[0] + m_val[1] * m_val[1] + m_val[2] * m_val[2]);
 	}
 
 	inline void make_unit_vector();

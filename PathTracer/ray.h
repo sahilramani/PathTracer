@@ -8,7 +8,7 @@ public:
 	Ray() {}
 	Ray(const Vec3& origin, const Vec3& direction)
 		: m_origin(origin)
-		, m_direction(direction)
+		, m_direction(unit_vector(direction))
 	{}
 
 	Vec3 origin() const { return m_origin; }
