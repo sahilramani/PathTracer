@@ -3,8 +3,6 @@
 #include "ray.h"
 #include "RayTarget.h"
 
-#define RAND_FLOAT ((float)rand()/(float)((unsigned int)RAND_MAX+1))
-
 class Material
 {
 public:
